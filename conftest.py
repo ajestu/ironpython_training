@@ -4,15 +4,14 @@ from fixture.application import Opplication
 import importlib
 import json
 
-
 fixture = None
 target= None
 
 @pytest.fixture
 def app(request):
     global fixture
-    link = load_config(request.config.getoption("--target"))
-    if fixture is None or not fixture.is_valid():
+    link = load_config(request.config.getoption("--target"))['baseUrl']
+    if fixture is None :
         fixture =  Opplication(link)
     return fixture
 
